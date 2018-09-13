@@ -15,7 +15,9 @@ postreqdata = json.loads(open(os.environ['req']).read())
 
 import nltk
 import operator
+nltk.download('vader_lexicon')
 from nltk.sentiment import SentimentIntensityAnalyzer
+
 vader_analyzer = SentimentIntensityAnalyzer()
 scores = vader_analyzer.polarity_scores(postreqdata['text'])
 out = max(scores.items(), key=operator.itemgetter(1))[0]
